@@ -27,15 +27,24 @@ function insertIngredient(){
             div3.appendChild(span3);
 
             var cell4=row.insertCell(3);
-                cell4.className = "flavorMass";
-            var t4=document.createElement("input");
-                t4.id = "numMass"+index;
-                t4.className = "hide";
-                t4.type = "number";
-                cell4.appendChild(t4);
-                if ( $('#massCheck').is(':checked') ) {
-                  t4.className = "";
+            var div=document.createElement("div");
+              div.className = "input-group flavorMass";
+            $(cell4).append(div);
+
+            if ( $('#massCheck').is(':checked') ) {
+              $('.flavorMass').each(function(){
+                if ($.trim($(this).text()).length === 0){
+                  var input = document.createElement("input");
+                    input.className = "massInput";
+                    input.type = "number";
+                  var span = document.createElement("span");
+                    span.className = "input-group-addon";
+                    span.innerHTML ="g/mL";
+                  $(this).append(input, span);
                 }
+              });
+
+            }
 
   
       index++;
@@ -48,7 +57,7 @@ var table = document.getElementById("ingredients");
 var count = $('#ingredients tr').length;
 if ( count > 2){
   var row = table.deleteRow(-1);
-  index--
+  index--;
 }
 }
 
@@ -63,7 +72,11 @@ function massCheck(){
       var massInput=document.createElement("input");
       massInput.className = "massInput";
       massInput.type = "number";
+      var massSpan = document.createElement("span");
+      massSpan.className = "input-group-addon";
+      massSpan.innerHTML = "g/mL";
       $(flavorMass).append(massInput);
+      $(flavorMass).append(massSpan);
 
   } else if ( ! $('#massCheck').is(':checked') ){
       $(massTd).addClass('hide');

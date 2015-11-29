@@ -51,20 +51,23 @@
     <div class="mainContent">
       <div class="row">
         <div class="col-sm-6">
+          <div class="table-responsive">
           <table>
             <tr>
               <td>Amount to Make (mL): </td>
               <td><input type="number" value="0" /></td>
             </tr>
           </table>
+          </div>
         </div>
 
         <div class="col-sm-6">
+        <div class="table-responsive">
           <table>
             <tr>
               <td class="massHeader hide"></td>
               <td class="massHeader hide"></td>
-              <td class="massHeader hide">Mass (g/mL)</td>
+              <td class="massHeader hide">Mass</td>
             </tr>
             <tr>
               <td>Target Nicotine (%): </td>
@@ -82,17 +85,19 @@
               <td id="pgMass" class="mass hide"><input class="massInput" type="number" value="1.038"/></td>
             </tr>
           </table>
+          </div>
         </div>
       </div>
 
       <div class="row">
         <div id="ingredientsContainer" class="contentCont tableContainer col-sm-12">
+        <div class="table-responsive">
         <table id="ingredients">
           <tr>
             <td class="number"></td>
             <td class="tableLabel">Flavor</td>
             <td class="tableLabel">Percent</td>
-            <td >Mass (g/mL)</td>
+            <td >Mass</td>
           </tr>
           <tr>
             <td id="num1"><span>1.</span></td>
@@ -109,6 +114,7 @@
             </td>
           </tr>
         </table>
+        </div>
         <br />
         <input id="addRow" class="btn btn-default" type="button" value="Add New Row" onclick="insertIngredient();" />
         <input id="deleteRow" class="btn btn-default" type="button" value="Delete Last Row" onclick="deleteIngredient();" />
