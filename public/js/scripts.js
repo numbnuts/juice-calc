@@ -47,9 +47,12 @@
           total = $("#total").val();
       $('#output').removeClass("hide");
       $('#output > tbody > tr').each(function(){
-        var targets = new Object();
-        targets.identity = $("td", this).first().text();
-        targets.percent = $(this).find("input").valueOf();
+        var $self = $(this);
+        var $data = $self.find("td");
+        var targets ={
+          identity: $($data[0]).text(),
+          percent: $($data[2]).find("input").first().val()
+        };
         console.log("output " + targets.identity + " " + targets.percent);
 
       });
