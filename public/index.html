@@ -7,34 +7,28 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="/ark/favicon.ico">
-
+    <link rel="icon" href="/img/favicon.ico">
     <title>Juice Calculator</title>
-
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom styles for this template -->
     <link href="/css/home.css" rel="stylesheet">
     <link href="/css/dragula.css" rel="stylesheet">
-
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-
   <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">Ejuice Calculator</a>
         </div>
@@ -42,98 +36,135 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Home</a></li>
             <li><a href="/about/">About</a></li>
-<!--             <li><a href="#contact">Contact</a></li> -->
+            <!--             <li><a href="#contact">Contact</a></li> -->
           </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
+          </div><!--/.nav-collapse -->
+        </div>
+      </nav>
+      <!-- Start of Main Content -->
+      <div class="mainContent">
+        <div class="row">
+          <div class="col-sm-5">
 
-    <div class="mainContent">
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="table-responsive">
-          <table>
-            <tr>
-              <td>Amount to Make (mL): </td>
-              <td><input type="number" value="0" /></td>
-            </tr>
-          </table>
+              <table class="table-bordered table-hover table-striped table-condensed">
+                <tr>
+                  <td>Target Amount: </td>
+                  <td>
+                    <div class="input-group">
+                      <input id="total" type="number" value="0" />
+                      <span class="input-group-addon">mL</span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+
+          </div>
+          <div class="col-sm-7">
+
+              <table class="table-bordered table-hover table-striped table-condensed">
+                <tr>
+                  <td class="massHeader hide"></td>
+                  <td class="massHeader hide"></td>
+                  <td class="massHeader hide">Mass</td>
+                </tr>
+                <tr>
+                  <td>Target Nicotine (%): </td>
+                  <td><input id="targetNic" type="number" value="0" /></td>
+                  <td class="mass hide"><input id="massNic" class="massInput" type="number"/></td>
+                </tr>
+                <tr>
+                  <td>Target VG (%): </td>
+                  <td><input id="targetVG" type="number" value="0" /></td>
+                  <td id="vgMass" class="mass hide"><input id="massVG" class="massInput" type="number" value="1.26"/></td>
+                </tr>
+                <tr>
+                  <td>Target PG (%): </td>
+                  <td><input id="targetPG" type="number" value="0" /></td>
+                  <td id="pgMass" class="mass hide"><input id="massPG" class="massInput" type="number" value="1.038"/></td>
+                </tr>
+              </table>
+
           </div>
         </div>
 
-        <div class="col-sm-6">
-        <div class="table-responsive">
-          <table>
-            <tr>
-              <td class="massHeader hide"></td>
-              <td class="massHeader hide"></td>
-              <td class="massHeader hide">Mass</td>
-            </tr>
-            <tr>
-              <td>Target Nicotine (%): </td>
-              <td><input type="number" value="0" /></td>
-              <td class="mass hide"><input class="massInput" type="number"/></td>
-            </tr>
-            <tr>
-              <td>Target VG (%): </td>
-              <td><input type="number" value="0" /></td>
-              <td id="vgMass" class="mass hide"><input class="massInput" type="number" value="1.26"/></td>
-            </tr>
-            <tr>
-              <td>Target PG (%): </td>
-              <td><input type="number" value="0" /></td>
-              <td id="pgMass" class="mass hide"><input class="massInput" type="number" value="1.038"/></td>
-            </tr>
-          </table>
+
+        <div class="row">
+          <div id="ingredientsContainer" class="contentCont tableContainer col-sm-12">
+            <div class="table-responsive">
+              <table class="table-bordered table-hover table-striped table-condensed" id="ingredients">
+                <tr>
+                  <td class="number"></td>
+                  <td class="tableLabel">Flavor</td>
+                  <td class="tableLabel">Percent</td>
+                  <td >Mass</td>
+                </tr>
+                <tr>
+                  <td><span class="numIngredient">1.</span></td>
+                  <td><input type='text' /></td>
+                  <td>
+                    <div class="input-group">
+                      <input type='number' />
+                      <span class="input-group-addon">%</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="input-group flavorMass">
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+            <br />
+            <input id="addRow" class="btn btn-default" type="button" value="Add New Row" />
+            <input id="deleteRow" class="btn btn-default" type="button" value="Delete Last Row" />
+            <label><input type="checkbox" id="massCheck" value="" >Measure by Mass</label>
           </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div id="ingredientsContainer" class="contentCont tableContainer col-sm-12">
-        <div class="table-responsive">
-        <table id="ingredients">
-          <tr>
-            <td class="number"></td>
-            <td class="tableLabel">Flavor</td>
-            <td class="tableLabel">Percent</td>
-            <td >Mass</td>
-          </tr>
-          <tr>
-            <td id="num1"><span>1.</span></td>
-            <td><input id="txtIngredient1" type='text' /></td>
-            <td>
-              <div class="input-group">
-                <input id="txtPercent1" type='number' />
-                <span class="input-group-addon">%</span>
-              </div>
-            </td>
-            <td>
-              <div class="input-group flavorMass">
-              </div>
-            </td>
-          </tr>
-        </table>
+        <div class="row">
+            <table id="output" class="output hide table-bordered table-hover table-striped table-condensed">
+              <thead>
+                <tr>
+                  <th>Ingredient</th>
+                  <th>mL</th>
+                  <th class="mass hide">Grams</th>
+                  <th>Total %</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="ingredient">Nicotine</td>
+                  <td class="mL"></td>
+                  <td class="mass hide grams"></td>
+                  <td class="total"></td>
+                </tr>
+                <tr>
+                  <td class="ingredient">VG</td>
+                  <td class="mL"></td>
+                  <td class="mass hide grams"></td>
+                  <td class="total"></td>
+                </tr>
+                <tr>
+                  <td class="ingredient">PG</td>
+                  <td class="mL"></td>
+                  <td class="mass hide grams"></td>
+                  <td class="total"></td>
+                </tr>
+              </tbody>
+            </table>
+            <br />
+            <input id="calculate" class="btn btn-default" type="button" value="Calculate" />
+
         </div>
-        <br />
-        <input id="addRow" class="btn btn-default" type="button" value="Add New Row" onclick="insertIngredient();" />
-        <input id="deleteRow" class="btn btn-default" type="button" value="Delete Last Row" onclick="deleteIngredient();" />
-        <label><input type="checkbox" id="massCheck" value="" onchange="massCheck()">Measure by Mass</label>
-        </div>
-      </div>
-
-
-    </div><!-- /.container -->
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="/js/ie10-viewport-bug-workaround.js"></script>
-    <script src="/js/scripts.js"></script>
-    <script src="/js/dragula.js"></script>
-  </body>
-</html>
+        </div><!-- /.container -->
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="/js/scripts.js"></script>
+        <script src="/js/dragula.js"></script>
+      </body>
+    </html>
