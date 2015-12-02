@@ -47,3 +47,39 @@ tr:nth-child(even) {
 label {
 	font-weight: inherit;
 }
+
+.input-group {
+  max-width: 200px;
+}
+
+.navbar-inverse {
+  background-color: black;
+}
+
+span.input-group-addon {
+    width: 20%;
+}
+
+#output thead > tr > th {padding: 0px 15px;}
+
+span.input-group-addon {
+    padding-top: 7px;
+}
+
+#precedenceDiv, .hideTarget{
+  display: none;
+}
+td, th {
+    padding: 0px 10px;
+}
+
+/*
+#targetsCont {
+  align-self: flex-start;
+}
+
+.row{
+  display: flex;
+  justify-content: center;
+}
+*/
