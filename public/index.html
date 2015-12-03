@@ -104,7 +104,7 @@
               <br />
               <input id="addRow" class="btn btn-default" type="button" value="Add New Row" />
               <input id="deleteRow" class="btn btn-default" type="button" value="Delete Last Row" />
-              <label><input type="checkbox" id="massCheck" value="" >Measure by Mass</label>
+              <!-- <label><input type="checkbox" id="massCheck" value="" >Measure by Mass</label> -->
             </div>
           </div>
           <div class="row">
@@ -137,7 +137,7 @@
           </div>
           <br style="clear: both;"/>
           <div class="row">
-            <input id="calculate" class="btn btn-default" type="button" value="Calculate" />
+            <input id="calculate" class="btn btn-default" type="button" onclick="storeValues()" value="Calculate" />
           </div>
           </div><!-- /.container -->
           <!-- Bootstrap core JavaScript
@@ -145,8 +145,10 @@
           <!-- Placed at the end of the document so the pages load faster -->
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
           <script>window.jQuery || document.write('<script src="js/bootstrap/jquery.min.js"><\/script>')</script>
+          <script src="js/js.cookie.js"></script>
           <!-- custom scripts -->
           <script src="js/scripts.js"></script>
+          <script src="js/cookies.js"></script>
           <script src="js/bootstrap/bootstrap.min.js"></script>
         </body>
       </html>

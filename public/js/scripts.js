@@ -45,7 +45,6 @@
         $("#output tbody").find("tr:eq(0)").find("td:eq(1)").text(nicMl);
         $("#output tbody").find("tr:eq(0)").find("td:eq(2)").text(nicPercent);
       }
-
       // Calculate Flavors
       $("#ingredients tbody > tr").each(function() {
         var $self = $(this),
@@ -72,7 +71,7 @@
             totalPercent = totalPercent + $percent;
           }
           window.totalPercent = totalPercent;
-          console.log("totalPercent = " + totalPercent);
+          console.log("Ingredients + Nic = " + totalPercent + "%");
         });
       }
       //set VG values in output
@@ -99,12 +98,12 @@
         }
       }
       //fix NaN outputs
-/*      $("#output td.mL, #output td.total").each(function() {
+      $("#output td.mL, #output td.total").each(function() {
         var $self = $(this);
         if (isNaN($self.text())) {
           $self.text(0);
         }
-      }); */
+      });
     };
     $('#calculate').click(calculate);
     // Handle styling of Max VG
