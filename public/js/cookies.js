@@ -1,6 +1,6 @@
     //Cookies
     var today = new Date();
-    var expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000); // plus 30 days
+    var expiry = new Date(today.getTime() + 365 * 24 * 3600 * 1000); // plus 1 year
     var expired = new Date(today.getTime() - 24 * 3600 * 1000); // less 24 hours
     function setCookie(name, value) {
       document.cookie = name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
@@ -30,7 +30,7 @@
       var values = getCookie("Values").split(',');
       var numIngredient = 2;
       console.log("values.length = " + values.length);
-      for (i = 6; i < values.length; i += 2) {
+      for (i = 9; i < values.length; i += 3) {
         $("#ingredients tr:last").clone().find('input').val('').end().insertAfter("#ingredients tr:last");
         $("#ingredients tr:last").find('.numIngredient').html(numIngredient + ".");
         numIngredient++;

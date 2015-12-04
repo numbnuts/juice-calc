@@ -11,6 +11,7 @@
     $("#addRow").click(function() {
       $("#ingredients tr:last").clone().find('input').val('').end().insertAfter("#ingredients tr:last");
       $("#ingredients tr:last").find('.numIngredient').html(numIngredient + ".");
+      $("#ingredients tr:last").find('input[type="number"]').val('0');
       numIngredient++;
     });
     var deleteIngredient = function deleteIngredient() {
@@ -30,8 +31,11 @@
       var total = $('#total').val(),
         targetNic = $('#targetNic').val(),
         targetVg = $('#targetVg').val(),
-        targetPg = $('#targetPg').val(),
-        baseNic = $('#baseNic').val();
+        baseNic = $('#baseNic').val(),
+        baseNicWeight = $('#baseNicWeight').val(),
+        targetVgWeight = $('#targetVgWeight').val(),
+        targetPgWeight = 1.038;
+
       //remove flavors so no repetitions when calculating 2+ times 
       $("#output tbody").find("tr:gt(2)").remove();
       // set Nic values in output table
@@ -53,11 +57,13 @@
           var $name = $($data[1]).find("input").first().val();
           var $percent = $($data[2]).find("input").first().val();
           var $mL = ($percent / 100 * total).toFixed(3);
+          var $weight = ($($data[3]).find("input").first().val() * $mL);
           //          console.log("name = " + $name + " percent = " + $percent);
           $("#output tr:last").clone().find('input').val('').end().insertAfter("#output tr:last");
           $("#output tr:last").find("td:eq(0)").text($name);
           $("#output tr:last").find("td:eq(1)").text($mL);
           $("#output tr:last").find("td:eq(2)").text($percent);
+          $("#output tr:last").find("td:eq(3)").text($weight + " mg");
         }
       });
 
@@ -84,10 +90,16 @@
       var vgMl = (targetVg * total / 100).toFixed(3);
       targetPg = parseFloat(100 - totalPercent - targetVg);
       var pgMl = (targetPg * total / 100).toFixed(3);
+      var nicWeight = (nicMl * baseNicWeight);
+      var vgWeight = (vgMl * targetVgWeight);
+      var pgWeight = (pgMl * targetPgWeight);
+      $("#output tbody").find("tr:eq(0)").find("td:eq(3)").text(nicWeight + " mg");
       $("#output tbody").find("tr:eq(1)").find("td:eq(1)").text(vgMl);
       $("#output tbody").find("tr:eq(1)").find("td:eq(2)").text(targetVg);
+      $("#output tbody").find("tr:eq(1)").find("td:eq(3)").text(vgWeight + " mg");
       $("#output tbody").find("tr:eq(2)").find("td:eq(1)").text(pgMl);
       $("#output tbody").find("tr:eq(2)").find("td:eq(2)").text(targetPg);
+      $("#output tbody").find("tr:eq(2)").find("td:eq(3)").text(pgWeight + " mg");
       if (nicPercent <= 100) {
         calculateTotalPercent();
       } else {

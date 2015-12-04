@@ -11,6 +11,7 @@
     <title>E Juice Calculator</title>
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Custom styles for this template -->
     <link href="css/home.css" rel="stylesheet">
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -24,10 +25,7 @@
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
+          <a class="nav-link" href="https://github.com/tgrowden/juice-calc" target="_blank"><i class="fa fa-github-alt"></i></a>
         </li>
       </ul>
     </nav>
@@ -40,7 +38,7 @@
               <td>
                 <div class="input-group">
                   <input id="total" class="targets col-xs-8" type="number" value="0" />
-                  <span class="input-group-addon">mL</span>
+                  <span class="input-group-addon col-xs-4">mL</span>
                 </div>
               </td>
             </tr>
@@ -49,16 +47,23 @@
               <td>
                 <div class="input-group">
                   <input id="targetNic" class="targets col-xs-8" type="number" value="0" />
-                  <span class="input-group-addon">mg</span>
+                  <span class="input-group-addon col-xs-4">mg/mL</span>
                 </div>
               </td>
+              <th class="weight">Weight</th>
             </tr>
             <tr class="hideTarget">
               <td>Target VG: </td>
               <td>
                 <div class="input-group">
                   <input id="targetVg" class="targets col-xs-8" type="number" value="0" />
-                  <span class="input-group-addon">%</span>
+                  <span class="input-group-addon col-xs-4">%</span>
+                </div>
+              </td>
+              <td class="weight">
+                <div class="input-group">
+                  <input id="targetVgWeight" class="targets col-xs-8" type="number" value="1.26" />
+                  <span class="input-group-addon col-xs-4">g/mL</span>
                 </div>
               </td>
             </tr>
@@ -67,88 +72,110 @@
               <td>
                 <div class="input-group">
                   <input id="baseNic" class="targets col-xs-8" type="number" value="0" />
-                  <span class="input-group-addon">mg</span>
+                  <span class="input-group-addon col-xs-4">mg/mL</span>
+                </div>
+              </td>
+              <td class="weight">
+                <div class="input-group">
+                  <input id="baseNicWeight" class="targets col-xs-8" type="number" value="0" />
+                  <span class="input-group-addon col-xs-4">g/mL</span>
                 </div>
               </td>
             </tr>
           </table>
           <br style="clear: both" />
-          <label style="display: inline-block;"><input type="checkbox" id="maxVg" value="" checked="checked"><strong>Max VG</strong></label>
+          <label style="display: inline-block;">
+            <input type="checkbox" id="maxVg" value="" checked="checked"><strong>Max VG</strong></label>
+          </div>
+        </div>
+        <div class="row">
+          <div id="ingredientsContainer" class="contentCont tableContainer">
+            <div class="table-responsive">
+              <table class="table-bordered table-hover table-striped table-condensed" id="ingredients">
+                <thead>
+                  <tr>
+                    <th class="number"></th>
+                    <th class="tableLabel">Flavor</th>
+                    <th class="tableLabel">Percent</th>
+                    <th class="tableLable weight">Weight</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="numIngredient">1.</span></td>
+                    <td>
+                      <input type='text' />
+                    </td>
+                    <td>
+                      <div class="input-group">
+                        <input type='number' value="0" class="col-xs-8" />
+                        <span class="input-group-addon col-xs-4">%</span>
+                      </div>
+                    </td>
+                    <td class="weight">
+                      <div class="input-group">
+                        <input id="total" class="targets col-xs-8" type="number" value="0" />
+                        <span class="input-group-addon col-xs-4">g/mL</span>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <br />
+            <input id="addRow" class="btn btn-default" type="button" value="Add New Row" />
+            <input id="deleteRow" class="btn btn-default" type="button" value="Delete Last Row" />
+            <!--<label><input type="checkbox" id="massCheck" value="">Measure by Mass</label> -->
+          </div>
+        </div>
+        <div class="row">
+          <table id="output" class="output hide table-bordered table-hover table-striped table-condensed">
+            <thead>
+              <tr>
+                <th>Ingredient</th>
+                <th>mL</th>
+                <th>Total %</th>
+                <th>Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="ingredient">Nicotine</td>
+                <td class="mL"></td>
+                <td class="total"></td>
+                <td class="weight"></td>
+              </tr>
+              <tr>
+                <td class="ingredient">VG</td>
+                <td class="mL"></td>
+                <td class="total"></td>
+                <td class="weight"></td>
+              </tr>
+              <tr>
+                <td class="ingredient">PG</td>
+                <td class="mL"></td>
+                <td class="total"></td>
+                <td class="weight"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <br style="clear: both;" />
+        <div class="row">
+          <input id="calculate" class="btn btn-default" type="button" value="Calculate" onclick="storeValues()" />
         </div>
       </div>
-      <div class="row">
-        <div id="ingredientsContainer" class="contentCont tableContainer">
-          <div class="table-responsive">
-            <table class="table-bordered table-hover table-striped table-condensed" id="ingredients">
-              <thead>
-                <tr>
-                  <th class="number"></th>
-                  <th class="tableLabel">Flavor</th>
-                  <th class="tableLabel">Percent</th>
-                  <tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><span class="numIngredient">1.</span></td>
-                      <td><input type='text' /></td>
-                      <td>
-                        <div class="input-group">
-                          <input type='number' class="col-xs-8"/>
-                          <span class="input-group-addon">%</span>
-                        </div>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <br />
-              <input id="addRow" class="btn btn-default" type="button" value="Add New Row" />
-              <input id="deleteRow" class="btn btn-default" type="button" value="Delete Last Row" />
-              <!-- <label><input type="checkbox" id="massCheck" value="" >Measure by Mass</label> -->
-            </div>
-          </div>
-          <div class="row">
-            <table id="output" class="output hide table-bordered table-hover table-striped table-condensed">
-              <thead>
-                <tr>
-                  <th>Ingredient</th>
-                  <th>mL</th>
-                  <th>Total %</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="ingredient">Nicotine</td>
-                  <td class="mL"></td>
-                  <td class="total"></td>
-                </tr>
-                <tr>
-                  <td class="ingredient">VG</td>
-                  <td class="mL"></td>
-                  <td class="total"></td>
-                </tr>
-                <tr>
-                  <td class="ingredient">PG</td>
-                  <td class="mL"></td>
-                  <td class="total"></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <br style="clear: both;"/>
-          <div class="row">
-            <input id="calculate" class="btn btn-default" type="button" onclick="storeValues()" value="Calculate" />
-          </div>
-          </div><!-- /.container -->
-          <!-- Bootstrap core JavaScript
-          ================================================== -->
-          <!-- Placed at the end of the document so the pages load faster -->
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-          <script>window.jQuery || document.write('<script src="js/bootstrap/jquery.min.js"><\/script>')</script>
-          <script src="js/js.cookie.js"></script>
-          <!-- custom scripts -->
-          <script src="js/scripts.js"></script>
-          <script src="js/cookies.js"></script>
-          <script src="js/bootstrap/bootstrap.min.js"></script>
-        </body>
-      </html>
+      <!-- /.container -->
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script>
+      window.jQuery || document.write('<script src="js/bootstrap/jquery.min.js"><\/script>')
+      </script>
+      <!-- custom scripts -->
+      <script src="js/scripts.js"></script>
+      <script src="js/cookies.js"></script>
+      <script src="js/bootstrap/bootstrap.min.js"></script>
+    </body>
+  </html>
